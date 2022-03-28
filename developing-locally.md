@@ -10,64 +10,59 @@ pip, virtualenv, PostgreSQL
 
 Make sure to have the following on your host:
 
-  - Python 3.9
-  - [PostgreSQL](https://www.postgresql.org/download/).
-  - [Redis](https://redis.io/download), if using Celery
-  - [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+-   Python 3.9
+-   [PostgreSQL](https://www.postgresql.org/download/).
+-   [Redis](https://redis.io/download), if using Celery
 
 First things first.
 
 1.  Create a virtualenv: :
-    
+
         $ python3.9 -m venv <virtual env path>
 
 2.  Activate the virtualenv you have just created: :
-    
+
         $ source <virtual env path>/bin/activate
 
-3.  Install cookiecutter-django: :
-    
-        $ cookiecutter gh:cookiecutter/cookiecutter-django
+3.  Install development requirements: :
 
-4.  Install development requirements: :
-    
         $ cd <what you have entered as the project_slug at setup stage>
         $ pip install -r requirements/local.txt
         $ git init # A git repo is required for pre-commit to install
         $ pre-commit install
-    
+
     <div class="note">
-    
+
     <div class="title">
-    
+
     Note
-    
+
     </div>
-    
+
     the <span class="title-ref">pre-commit</span> hook exists in the
     generated project as default. For the details of
     <span class="title-ref">pre-commit</span>, follow the
     [pre-commit](https://pre-commit.com/) site.
-    
+
     </div>
 
-5.  Create a new PostgreSQL database using
+4.  Create a new PostgreSQL database using
     [createdb](https://www.postgresql.org/docs/current/static/app-createdb.html):
     :
-    
+
         $ createdb --username=postgres <project_slug>
-    
-    `project_slug` is what you have entered as the project\_slug at the
+
+    `project_slug` is what you have entered as the project_slug at the
     setup stage.
-    
+
     <div class="note">
-    
+
     <div class="title">
-    
+
     Note
-    
+
     </div>
-    
+
     if this is the first time a database is created on your machine you
     might need an [initial PostgreSQL set
     up](https://web.archive.org/web/20190303010033/http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/firstconnect.html)
@@ -75,49 +70,49 @@ First things first.
     The [postgres
     documentation](https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html)
     explains the syntax of the config file that you need to change.
-    
+
     </div>
 
-6.  Set the environment variables for your database(s): :
-    
+5.  Set the environment variables for your database(s): :
+
         $ export DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>
         # Optional: set broker URL if using Celery
         $ export CELERY_BROKER_URL=redis://localhost:6379/0
-    
+
     <div class="note">
-    
+
     <div class="title">
-    
+
     Note
-    
+
     </div>
-    
+
     Check out the `settings` page for a comprehensive list of the
     environments variables.
-    
+
     </div>
-    
+
     <div class="seealso">
-    
+
     To help setting up your environment variables, you have a few
     options:
-    
-      - create an `.env` file in the root of your project and define all
+
+    -   create an `.env` file in the root of your project and define all
         the variables you need in it. Then you just need to have
         `DJANGO_READ_DOT_ENV_FILE=True` in your machine and all the
         variables will be read.
-      - Use a local environment manager like
+    -   Use a local environment manager like
         [direnv](https://direnv.net/)
-    
+
     </div>
 
-7.  Apply migrations: :
-    
+6.  Apply migrations: :
+
         $ python manage.py migrate
 
-8.  If you're running synchronously, see the application being served
+7.  If you're running synchronously, see the application being served
     through Django development server: :
-    
+
         $ python manage.py runserver 0.0.0.0:8000
 
 or if you're running asynchronously: :
@@ -156,11 +151,11 @@ ones who have not yet verified themselves.
 3.  Copy the file to the project root.
 
 4.  Make it executable: :
-    
+
         $ chmod +x MailHog
 
 5.  Spin up another terminal window and start it there: :
-    
+
         ./MailHog
 
 6.  Check out <http://127.0.0.1:8025/> to see how it goes.
@@ -183,8 +178,7 @@ will be a default setup.
 
 </div>
 
-Alternatively, deliver emails over console via `EMAIL_BACKEND =
-'django.core.mail.backends.console.EmailBackend'`.
+Alternatively, deliver emails over console via `EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`.
 
 In production, we have [Mailgun](https://www.mailgun.com/) configured to
 have your back\!
@@ -218,14 +212,14 @@ page.
     installed on your machine.
 
 2.  In the project root, install the JS dependencies with:
-    
+
         $ npm install
 
 3.  Now - with your virtualenv activated - start the application by
     running:
-    
+
         $ npm run dev
-    
+
     The app will now run with live reloading enabled, applying front-end
     changes dynamically.
 
@@ -245,5 +239,4 @@ run Django as your would normally with `manage.py runserver`.
 
 ## Summary
 
-Congratulations, you have made it\! Keep on reading to unleash full
-potential of Cookiecutter Django.
+Congratulations, you have made it\! Keep on reading to unleash full potential
