@@ -1,2 +1,2 @@
-web: env > .env; env PYTHONUNBUFFERED=true DJANGO_READ_DOT_ENV_FILE=true honcho start -f Procfile.web 2>&1
-worker: env > .env; env PYTHONUNBUFFERED=true DJANGO_READ_DOT_ENV_FILE=true honcho start -f Procfile.celery 2>&1
+web: gunicorn config.wsgi:application
+worker: REMAP_SIGTERM=SIGQUIT celery -A config.celery_app worker --loglevel=info
