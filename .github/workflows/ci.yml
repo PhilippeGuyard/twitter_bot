@@ -37,7 +37,7 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v2.0.3
         with:
-          extra_args: "**/*.py"
+          extra_args: "--files **/*.py"
 
   # With no caching at all the entire ci process takes 4m 30s to complete!
   pytest:
